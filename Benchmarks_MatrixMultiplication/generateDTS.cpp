@@ -67,11 +67,11 @@ int main() {
     srand(static_cast<unsigned int>(time(0)));  // Inicializar la semilla aleatoria
 
     string nombreArchivo = "datasetMatrix.txt"; // Nombre del dataset de matrices
-    int cantidadPares = 50; // Cantidad pares de matrices
+    int cantidadPares = 200; // Cantidad pares de matrices
     int minN = 1;  // Valor mínimo de n
-    int maxN = 7;  // Valor máximo de n
-    int minVal = -100; // Valor mínimo de los elementos de la matriz
-    int maxVal = 100;  // Valor máximo de los elementos de la matriz
+    int maxN = 8;  // Valor máximo de n
+    int minVal = -300; // Valor mínimo de los elementos de la matriz
+    int maxVal = 300;  // Valor máximo de los elementos de la matriz
 
     guardarParesDeMatricesEnArchivo(nombreArchivo, cantidadPares, minN, maxN, minVal, maxVal);
 

@@ -125,6 +125,6 @@ void generarDataset(const string& nombreArchivo, int cantidad) {
 }
 
 int main() {
-    generarDataset("dataset.txt", 50);
+    generarDataset("dataset.txt", 150);
     return 0;
 }
