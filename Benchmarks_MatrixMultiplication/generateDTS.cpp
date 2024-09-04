@@ -60,13 +60,14 @@ void guardarParesDeMatricesEnArchivo(const string& nombreArchivo, int cantidadPa
 
     archivo.close();
     cout << "Pares de matrices guardados en " << nombreArchivo << endl;
+    cout << "-- Se crearon "<< cantidadPares << " pares de matrices 2^n x 2^n" << endl;
 }
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));  // Inicializar la semilla aleatoria
 
-    string nombreArchivo = "datasetMatrix.txt";
-    int cantidadPares = 50;
+    string nombreArchivo = "datasetMatrix.txt"; // Nombre del dataset de matrices
+    int cantidadPares = 50; // Cantidad pares de matrices
     int minN = 1;  // Valor mínimo de n
     int maxN = 7;  // Valor máximo de n
     int minVal = -100; // Valor mínimo de los elementos de la matriz

@@ -15,7 +15,7 @@ SRC_GEN = generateDTS.cpp
 SRC_MAIN = main.cpp
 
 # Regla para compilar el generador de dataset
-dataset: $(GENERATOR)
+all: prepare $(GENERATOR)
 	./$(GENERATOR)
 
 $(GENERATOR): $(SRC_GEN)
@@ -39,5 +39,3 @@ prepare:
 	rm -f resultados/*.csv
 	rm -f salida/*.txt
 
-# Regla por defecto que compila, genera el dataset y el ejecutable
-all: prepare dataset $(TARGET)
