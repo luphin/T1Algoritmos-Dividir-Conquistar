@@ -11,7 +11,9 @@ using namespace std;
 using namespace std::chrono;
 namespace fs = std::filesystem;
 
-vector<vector<int>> iterativoCubicoTradicional(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+pair<vector<vector<int>>, double> iterativoCubicoTradicional(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    auto inicio = high_resolution_clock::now();
+    
     int m = A.size();
     int n = A[0].size();
     int p = B[0].size();
@@ -25,7 +27,10 @@ vector<vector<int>> iterativoCubicoTradicional(const vector<vector<int>>& A, con
         }
     }
 
-    return C;
+    auto fin = high_resolution_clock::now();
+    double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
+
+    return make_pair(C, tiempo);
 }
 
 vector<vector<int>> trasponer(const vector<vector<int>>& B) {
@@ -42,7 +47,9 @@ vector<vector<int>> trasponer(const vector<vector<int>>& B) {
     return B_T;
 }
 
-vector<vector<int>> iterativoCubicoOptimizado(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+pair<vector<vector<int>>, double> iterativoCubicoOptimizado(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    auto inicio = high_resolution_clock::now();
+
     int m = A.size();
     int n = A[0].size();
     int p = B[0].size();
@@ -57,7 +64,10 @@ vector<vector<int>> iterativoCubicoOptimizado(const vector<vector<int>>& A, cons
         }
     }
 
-    return C;
+    auto fin = high_resolution_clock::now();
+    double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
+
+    return make_pair(C, tiempo);
 }
 
 // Función para sumar dos matrices
@@ -81,11 +91,13 @@ vector<vector<int>> restarMatrices(const vector<vector<int>>& A, const vector<ve
 }
 
 // Función para multiplicar dos matrices utilizando el algoritmo de Strassen
-vector<vector<int>> strassenMultiplicacion(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+pair<vector<vector<int>>, double> strassenMultiplicacion(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    auto inicio = high_resolution_clock::now();
+
     int n = A.size();
 
     if (n == 1) {
-        return {{A[0][0] * B[0][0]}};
+        return make_pair(vector<vector<int>>{{A[0][0] * B[0][0]}}, 0.0);
     }
 
     int mid = n / 2;
@@ -110,19 +122,19 @@ vector<vector<int>> strassenMultiplicacion(const vector<vector<int>>& A, const v
     }
 
     // Calculando las 7 multiplicaciones de Strassen
-    vector<vector<int>> M1 = strassenMultiplicacion(sumarMatrices(A11, A22), sumarMatrices(B11, B22));
-    vector<vector<int>> M2 = strassenMultiplicacion(sumarMatrices(A21, A22), B11);
-    vector<vector<int>> M3 = strassenMultiplicacion(A11, restarMatrices(B12, B22));
-    vector<vector<int>> M4 = strassenMultiplicacion(A22, restarMatrices(B21, B11));
-    vector<vector<int>> M5 = strassenMultiplicacion(sumarMatrices(A11, A12), B22);
-    vector<vector<int>> M6 = strassenMultiplicacion(restarMatrices(A21, A11), sumarMatrices(B11, B12));
-    vector<vector<int>> M7 = strassenMultiplicacion(restarMatrices(A12, A22), sumarMatrices(B21, B22));
+    auto M1 = strassenMultiplicacion(sumarMatrices(A11, A22), sumarMatrices(B11, B22));
+    auto M2 = strassenMultiplicacion(sumarMatrices(A21, A22), B11);
+    auto M3 = strassenMultiplicacion(A11, restarMatrices(B12, B22));
+    auto M4 = strassenMultiplicacion(A22, restarMatrices(B21, B11));
+    auto M5 = strassenMultiplicacion(sumarMatrices(A11, A12), B22);
+    auto M6 = strassenMultiplicacion(restarMatrices(A21, A11), sumarMatrices(B11, B12));
+    auto M7 = strassenMultiplicacion(restarMatrices(A12, A22), sumarMatrices(B21, B22));
 
     // Calculando los cuadrantes de la matriz resultante
-    vector<vector<int>> C11 = sumarMatrices(restarMatrices(sumarMatrices(M1, M4), M5), M7);
-    vector<vector<int>> C12 = sumarMatrices(M3, M5);
-    vector<vector<int>> C21 = sumarMatrices(M2, M4);
-    vector<vector<int>> C22 = sumarMatrices(restarMatrices(sumarMatrices(M1, M3), M2), M6);
+    auto C11 = sumarMatrices(restarMatrices(sumarMatrices(M1.first, M4.first), M5.first), M7.first);
+    auto C12 = sumarMatrices(M3.first, M5.first);
+    auto C21 = sumarMatrices(M2.first, M4.first);
+    auto C22 = sumarMatrices(restarMatrices(sumarMatrices(M1.first, M3.first), M2.first), M6.first);
 
     // Combinando los cuadrantes en una única matriz
     vector<vector<int>> C(n, vector<int>(n));
@@ -135,7 +147,10 @@ vector<vector<int>> strassenMultiplicacion(const vector<vector<int>>& A, const v
         }
     }
 
-    return C;
+    auto fin = high_resolution_clock::now();
+    double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
+
+    return make_pair(C, tiempo);
 }
 
 vector<pair<vector<vector<int>>, vector<vector<int>>>> leerMatrices(const string& nombreArchivo) {
@@ -193,11 +208,9 @@ void medirTiempo(Func algoritmo, const pair<vector<vector<int>>, vector<vector<i
     const vector<vector<int>>& A = matrices.first;
     const vector<vector<int>>& B = matrices.second;
 
-    auto inicio = high_resolution_clock::now();
-    vector<vector<int>> C = algoritmo(A, B);
-    auto fin = high_resolution_clock::now();
-
-    double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
+    auto resultado = algoritmo(A, B);
+    const vector<vector<int>>& C = resultado.first;
+    double tiempo = resultado.second;
 
     // Guardar el resultado en el archivo CSV
     ofstream fileCSV(archivoCSV, ios::app);
@@ -218,6 +231,7 @@ void medirTiempo(Func algoritmo, const pair<vector<vector<int>>, vector<vector<i
 }
 
 
+
 int main() {
     fs::create_directory("resultados"); // Crear directorio para .csv
     fs::create_directory("salida"); // Crear directorio para las matrices resultantes
@@ -225,7 +239,7 @@ int main() {
     // Leer el archivo datasetMatrix.txt
     vector<pair<vector<vector<int>>, vector<vector<int>>>> dataset = leerMatrices("datasetMatrix.txt");
 
-    // Algoritmo Iterativo Cúbico Tradicional
+   // Algoritmo Iterativo Cúbico Tradicional
     ofstream cubicoFile("resultados/iterativoCubicoTradicional.csv");
     cubicoFile << "Tamaño Matriz A,Tamaño Matriz B,Tiempo\n";
     cubicoFile.close();
@@ -244,12 +258,12 @@ int main() {
     }
 
     // Algoritmo de Strassen
-    ofstream strassenFile("resultados/strassen.csv");
+    ofstream strassenFile("resultados/strassenMultiplicacion.csv");
     strassenFile << "Tamaño Matriz A,Tamaño Matriz B,Tiempo\n";
     strassenFile.close();
     i = 1;
     for (const auto& matrices : dataset) {
-        medirTiempo(strassenMultiplicacion, matrices, i++, "resultados/strassen.csv", "salida/strassen.txt");
+        medirTiempo(strassenMultiplicacion, matrices, i++, "resultados/strassenMultiplicacion.csv", "salida/strassenMultiplicacion.txt");
     }
 
     return 0;
