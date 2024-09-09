@@ -1,5 +1,5 @@
 # TAREA 1: Algoritmos dividir y conquistar
-En este repositorio se encuentra el desarrollo de una tarea destinada a comprobar la eficiencia de algoritmos de ordenamiento y multiplicación con vectores y matrices de diferentes tamaños y características. Las implementaciones están organizadas en carpetas separadas. Dentro de cada una de ellas, se pueden observar los resultados obtenidos en la carpeta `resultados`, donde se almacenan los `tiempos de ejecución` para ordenar los vectores o multiplicar las matrices de un tamaño determinado `n`. En la carpeta `salida`, se generan archivos TXT con las soluciones retornadas por los algoritmos, lo que permite verificar que las implementaciones se han realizado correctamente y producen los resultados esperados.
+En este repositorio se encuentra el desarrollo de una tarea del ramo Algoritmos y Complejidad, destinada a comprobar la eficiencia de algoritmos de ordenamiento y multiplicación con vectores y matrices de diferentes tamaños y características. Las implementaciones están organizadas en carpetas separadas. Dentro de cada una de ellas, se pueden observar los resultados obtenidos en la carpeta `resultados`, donde se almacenan los `tiempos de ejecución` para ordenar los vectores o multiplicar las matrices de un tamaño determinado `n`. En la carpeta `salida`, se generan archivos TXT con las soluciones retornadas por los algoritmos, lo que permite verificar que las implementaciones se han realizado correctamente y producen los resultados esperados.
 
 ## Ejecución de los algoritmos
 ### 1. Ingresar al directorio correspondiente
@@ -68,7 +68,7 @@ Este comando ejecutará las pruebas en función de los algoritmos presentes en c
 ```
 
 ### Algoritmos Ordenamiento
-Para este conjunto de algoritmos se utilizaron implementaciones existentes de [GeeksforGeeks](https://www.geeksforgeeks.org/), ajustando ciertas partes para que coincidieran con la entrada de los vectores de prueba. Los algoritmos utilizados son los siguientes:
+Para este conjunto de algoritmos se utilizaron implementaciones existentes de [www.geeksforgeeks.org](https://www.geeksforgeeks.org/), ajustando ciertas partes para que coincidieran con la entrada de los vectores de prueba. Los algoritmos utilizados son los siguientes:
 
 - Selection sort.[Geeksforgeeks: Selection Sort](https://www.geeksforgeeks.org/selection-sort-algorithm-2/?ref=header_outind)
 - Bubble sort. [Geeksforgeeks: Bubble Sort](https://www.geeksforgeeks.org/bubble-sort-in-cpp/) 
@@ -96,5 +96,5 @@ Referencias consultadas:
 
 
 ## Autor 
-Luis Zegarra Stuardo. 
+Luis Zegarra
 
