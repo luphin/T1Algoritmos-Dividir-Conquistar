@@ -55,7 +55,7 @@ void generarDataset(const string& nombreArchivo, int cantidad) {
     // Semilla para la generación de números aleatorios
     srand(time(0));
 
-    // Generar 50 vectores aleatorios
+    // Generar 'cantidad' vectores aleatorios
     for (int i = 0; i < cantidad; ++i) {
         int tamano = 10 + rand() % 991;  // Rango entre 10 y 1000
         vector<int> vector;
@@ -71,7 +71,7 @@ void generarDataset(const string& nombreArchivo, int cantidad) {
         archivo << "}\n";
     }
 
-    // Generar 50 vectores semiordenados
+    // Generar 'cantidad' vectores semiordenados
     for (int i = 0; i < cantidad; ++i) {
         int tamano = 10 + rand() % 991;  // Rango entre 10 y 1000
         vector<int> vector;
@@ -87,7 +87,7 @@ void generarDataset(const string& nombreArchivo, int cantidad) {
         archivo << "}\n";
     }
 
-    // Generar 50 vectores parcialmente ordenados
+    // Generar 'cantidad' vectores parcialmente ordenados
     for (int i = 0; i < cantidad; ++i) {
         int tamano = 10 + rand() % 991;  // Rango entre 10 y 1000
         vector<int> vector;
@@ -103,7 +103,7 @@ void generarDataset(const string& nombreArchivo, int cantidad) {
         archivo << "}\n";
     }
 
-    // Generar 50 vectores ordenados a la inversa
+    // Generar 'cantidad' vectores ordenados a la inversa
     for (int i = 0; i < cantidad; ++i) {
         int tamano = 10 + rand() % 991;  // Rango entre 10 y 1000
         vector<int> vector;

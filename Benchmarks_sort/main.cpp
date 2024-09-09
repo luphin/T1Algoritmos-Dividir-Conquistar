@@ -13,11 +13,15 @@ namespace fs = std::filesystem;
 // Función de bubbleSort obtenida de : https://www.geeksforgeeks.org/bubble-sort-in-cpp/
 // la versión utilizada es bubbleSort normal, esto porque se mostraba uno que estaba optimizado
 void bubbleSort(vector<int>& v) {
+    // Largo de vector
     int n = v.size();
+    // Iterar en todo el vector
     for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (v[j] > v[j + 1]) {
-                swap(v[j], v[j + 1]);
+        // Iterar hasta el penúltimo elemento
+        for (int j = 0; j < n - i - 1; j++) { 
+            // Comparacion entre elementos
+            if (v[j] > v[j + 1]) { 
+                swap(v[j], v[j + 1]); // Cambio
             }
         }
     }
@@ -25,14 +29,19 @@ void bubbleSort(vector<int>& v) {
 
 // Función de selectionSort obternida de :  https://www.geeksforgeeks.org/selection-sort-algorithm-2/
 void selectionSort(vector<int>& arr) {
+    // Largo de vector
     int n = arr.size();
+    // Iterar en todo el vector
     for (int i = 0; i < n - 1; i++) {
-        int min_idx = i;
+        int min_idx = i;  // Minimo elemento encontrado
+        // Iterar entre el elemento siguiente y el último
         for (int j = i + 1; j < n; j++) {
+            //  CAmbiar valor de min_idx si existe un valor menor que el actual
             if (arr[j] < arr[min_idx]) {
                 min_idx = j;
             }
         }
+        // CAmbiar el valor actual con el menor encontrado
         if (min_idx != i) {
             swap(arr[min_idx], arr[i]);
         }
@@ -42,20 +51,27 @@ void selectionSort(vector<int>& arr) {
 // Función de mergeSort obtenidade: https://www.geeksforgeeks.org/merge-sort/
 // compuesta por las funciones: merge, mergeSortHelper y mergeSort
 // se aplicó una funcion mergeSortHelper porque habia problemas con la entrada, sigue manteniedo la forma original
+
+// Función que fusiona dos arreglos ordenados en un solo arreglo ordenado
 void merge(vector<int>& arr, int left, int mid, int right) {
+    // Calcular tamaño de secuencias
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
+    // Arreglos para almacenar secuencias
     vector<int> L(n1), R(n2);
 
+    // Copiar parte izquierda del arreglo
     for (int i = 0; i < n1; i++) {
         L[i] = arr[left + i];
     }
+    // Copiar parte derecha del arreglo
     for (int j = 0; j < n2; j++) {
         R[j] = arr[mid + 1 + j];
     }
 
     int i = 0, j = 0, k = left;
+    // Juntar secuancias ordenadas
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             arr[k] = L[i];
@@ -66,59 +82,76 @@ void merge(vector<int>& arr, int left, int mid, int right) {
         }
         k++;
     }
-
+    // Copiar elementos de subsecuencia izquierda
     while (i < n1) {
         arr[k] = L[i];
         i++;
         k++;
     }
-
+    // Copiar elementos de subsecuencia derecha
     while (j < n2) {
         arr[k] = R[j];
         j++;
         k++;
     }
 }
-
+// Función recursiva que ordena una subsecuencia del arreglo
 void mergeSortHelper(vector<int>& arr, int left, int right) {
+    // Caso base. un solo elemento, ordenado
     if (left >= right) {
         return;
     }
+    // Cálculo índice medio pra subconjuntos
     int mid = left + (right - left) / 2;
+    // Ordenar subconjunto izquierdo/derecho
     mergeSortHelper(arr, left, mid);
     mergeSortHelper(arr, mid + 1, right);
+    // Juntar subconjuntos
     merge(arr, left, mid, right);
 }
-
+// Función principal que ordena el arreglo
 void mergeSort(vector<int>& arr) {
     mergeSortHelper(arr, 0, arr.size() - 1);
 }
 
 // Función de quickSort obtenida de : https://www.geeksforgeeks.org/cpp-program-for-quicksort/
 // compuesta por las funciones: partition, quickSortHElper y quickSort
-// quickSortHelper fue agregada poruqe habian problemas con la entrada
+// quickSortHelper fue agregada porque habian problemas con la entrada
+
+// Función que particiona el arreglo en dos subarreglos
 int partition(vector<int>& vec, int low, int high) {
+    // Último elemeto va aser pivot
     int pivot = vec[high];
+    // indice de partición
     int i = (low - 1);
+    // Paricionar Arreglo
     for (int j = low; j <= high - 1; j++) {
+        // Elemento actual menor que el pivot, lo mueve a la izquierda
         if (vec[j] <= pivot) {
             i++;
             swap(vec[i], vec[j]);
         }
     }
+    // Mover piot a posicion final
     swap(vec[i + 1], vec[high]);
+    // Retornar indice pivot
     return (i + 1);
 }
 
+// Función recursiva que ordena la subsecuencia
 void quickSortHelper(vector<int>& vec, int low, int high) {
+    // CAso base
     if (low < high) {
+        // Particionar subsecuencia
         int p = partition(vec, low, high);
+        // Odenar subsecuencias izquierda/derecha
         quickSortHelper(vec, low, p - 1);
         quickSortHelper(vec, p + 1, high);
     }
 }
-
+// Función principal que ordena el arreglo
 void quickSort(vector<int>& vec) {
+    // Llama a la función recursiva con los índices inferior y superior del arreglo original
     quickSortHelper(vec, 0, vec.size() - 1);
 }
 
@@ -173,11 +206,13 @@ vector<vector<int>> leerDataset(const string& nombreArchivo) {
 // Función para medir el tiempo de ejecución en microsegundos "us"
 template<typename SortFunction>
 void medirTiempo(vector<int>& vec, SortFunction sortFunction, const string& nombreArchivo, const string& nombreArchivoSalida) {
+    // Medir tiempo de ejecución
     auto inicio = high_resolution_clock::now();
     sortFunction(vec);
     auto fin = high_resolution_clock::now();
     auto duracion = duration_cast<microseconds>(fin - inicio).count();
-
+    
+    // Escritura de los resultados de los tiempos medidos
     ofstream archivo(nombreArchivo, ios::app);
     if (archivo.is_open()) {
         archivo << vec.size() << "," << duracion << "\n";
@@ -185,7 +220,7 @@ void medirTiempo(vector<int>& vec, SortFunction sortFunction, const string& nomb
     } else {
         cerr << "No se pudo abrir el archivo para escritura.\n";
     }
-
+    // Escritura de llos vectores una vez ordenados
     ofstream archivo2(nombreArchivoSalida, ios::app);
     if (archivo2.is_open()) {
         archivo2 << "{";

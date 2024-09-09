@@ -11,33 +11,50 @@ using namespace std;
 using namespace std::chrono;
 namespace fs = std::filesystem;
 
+// Función que multiplica dos matrices de manera tradicional
+// Revisar el README para ver las referencias con las cuales se creo esta implementación.
 pair<vector<vector<int>>, double> iterativoCubicoTradicional(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    // Inicia el temporizador
     auto inicio = high_resolution_clock::now();
     
+    // Cálculo tamaño de las matrices de entrada
     int m = A.size();
     int n = A[0].size();
     int p = B[0].size();
+
+     // Crea la matriz resultante
     vector<vector<int>> C(m, vector<int>(p, 0));
 
+    // Iterar en la matriz resultante
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < p; ++j) {
+            // Calcular el valor del elemento con la suma de las multiplicaciones
             for (int k = 0; k < n; ++k) {
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
     }
 
+    // Detener el temporizador
     auto fin = high_resolution_clock::now();
+    // Calcular el tiempo de ejecución
     double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
 
     return make_pair(C, tiempo);
 }
 
+// Función que multiplica dos matrices de manera optimizada
+// Está compuesta por la funcion trasponer y iterativoCubicoOptimizado
+// Revisar el README para ver las referencias con las cuales se creo esta implementación
+
+// Funcioón de trasponer una matriz
 vector<vector<int>> trasponer(const vector<vector<int>>& B) {
     int n = B.size();
     int p = B[0].size();
+    // Almacenar matriz B traspuesta
     vector<vector<int>> B_T(p, vector<int>(n, 0));
 
+    // Trasponer matriz B
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < p; ++j) {
             B_T[j][i] = B[i][j];
@@ -47,28 +64,41 @@ vector<vector<int>> trasponer(const vector<vector<int>>& B) {
     return B_T;
 }
 
+// Función principal
 pair<vector<vector<int>>, double> iterativoCubicoOptimizado(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    // Inicia el temporizador
     auto inicio = high_resolution_clock::now();
 
+    // Cálculo tamaño de las matrices de entrada
     int m = A.size();
     int n = A[0].size();
     int p = B[0].size();
+    // Transpone la matriz B
     vector<vector<int>> B_T = trasponer(B);
+    // Crea la matriz resultante
     vector<vector<int>> C(m, vector<int>(p, 0));
 
+    // Itera sobre cada elemento de la matriz resultante
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < p; ++j) {
+            // Calcular el valor del elemento con la suma de las multiplicaciones
             for (int k = 0; k < n; ++k) {
                 C[i][j] += A[i][k] * B_T[j][k];
             }
         }
     }
 
+    // Detener el temporizador
     auto fin = high_resolution_clock::now();
+    // Cacular tiempo ejecución
     double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
 
     return make_pair(C, tiempo);
 }
+
+// Función del algoritmo Strasse para multiplicar matrices
+// compuesta de la funciones sumarMatrices, restarMatrices y strassenMultiplicacion
+// Revisar el README para ver las referencias con las cuales se creo esta implementación.
 
 // Función para sumar dos matrices
 vector<vector<int>> sumarMatrices(const vector<vector<int>>& A, const vector<vector<int>>& B) {
@@ -92,10 +122,12 @@ vector<vector<int>> restarMatrices(const vector<vector<int>>& A, const vector<ve
 
 // Función para multiplicar dos matrices utilizando el algoritmo de Strassen
 pair<vector<vector<int>>, double> strassenMultiplicacion(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+    // Iniciar tiempo
     auto inicio = high_resolution_clock::now();
 
     int n = A.size();
 
+    // Caso base
     if (n == 1) {
         return make_pair(vector<vector<int>>{{A[0][0] * B[0][0]}}, 0.0);
     }
@@ -147,12 +179,15 @@ pair<vector<vector<int>>, double> strassenMultiplicacion(const vector<vector<int
         }
     }
 
+    // Detener tiempo
     auto fin = high_resolution_clock::now();
+    // Calcular tiempo de ejecución
     double tiempo = duration_cast<nanoseconds>(fin - inicio).count();
 
     return make_pair(C, tiempo);
 }
 
+// Función lectura de archivo dataset
 vector<pair<vector<vector<int>>, vector<vector<int>>>> leerMatrices(const string& nombreArchivo) {
     ifstream archivo(nombreArchivo);
     if (!archivo.is_open()) {
@@ -160,9 +195,11 @@ vector<pair<vector<vector<int>>, vector<vector<int>>>> leerMatrices(const string
         exit(1);
     }
 
+    // Almacenar contenido del archivo
     vector<pair<vector<vector<int>>, vector<vector<int>>>> dataset;
     string linea;
 
+    // Leer par de matrices
     while (getline(archivo, linea)) {
         if (linea.find("Matriz A") != string::npos) {
             int m, n;
@@ -202,7 +239,7 @@ vector<pair<vector<vector<int>>, vector<vector<int>>>> leerMatrices(const string
 
 
 
-// Función para medir el tiempo de ejecución de un algoritmo de multiplicación de matrices
+// Función para realizar multiplicación de matrices y registrar resultados
 template<typename Func>
 void medirTiempo(Func algoritmo, const pair<vector<vector<int>>, vector<vector<int>>>& matrices, int numero, const string& archivoCSV, const string& archivoSalida) {
     const vector<vector<int>>& A = matrices.first;
