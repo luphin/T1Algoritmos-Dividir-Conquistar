@@ -67,26 +67,28 @@ Este comando ejecutará las pruebas en función de los algoritmos presentes en c
 
 ```
 
-### ALgoritmos Ordenamiento
+### Algoritmos Ordenamiento
 Para este conjunto de algoritmos se utilizaron implementaciones existentes de [GeeksforGeeks](https://www.geeksforgeeks.org/), ajustando ciertas partes para que coincidieran con la entrada de los vectores de prueba. Los algoritmos utilizados son los siguientes:
 
 - Selection sort.[Geeksforgeeks: Selection Sort](https://www.geeksforgeeks.org/selection-sort-algorithm-2/?ref=header_outind)
 - Bubble sort. [Geeksforgeeks: Bubble Sort](https://www.geeksforgeeks.org/bubble-sort-in-cpp/) 
 - Mergesort. [Geeksforgeeks: Merge Sort](https://www.geeksforgeeks.org/merge-sort/?ref=header_outind) 
 - Quicksort. [Geeksforgeeks: Quick Sort](https://www.geeksforgeeks.org/quick-sort-algorithm/?ref=header_outind)
-- Funcion sorting de biblioteca estandar de C++. [Geeksforgeeks: std::sort](https://www.geeksforgeeks.org/sort-c-stl/) [cppreference](https://en.cppreference.com/w/cpp/algorithm/sort)
+- Funcion sorting de biblioteca estandar de C++. [Geeksforgeeks: std::sort](https://www.geeksforgeeks.org/sort-c-stl/) y [cppreference](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 
 ### Algoritmos Multiplicacion de Matrices
 Para los algoritmos de multiplicación de matrices, se utilizaron diferentes fuentes para formular los algoritmos. Los algoritmos implementados son:
 
 - Algoritmo iterativo cubico tradicional 
-- Algoritmo iterativo cubico optimizado. 
+- Algoritmo iterativo cubico optimizado.
+
 Referencias utilizadas:
     - [betterprogramming: Better-than-Cubic Complexity for Matrix Multiplication in Rust. Autor Mike Cvet](https://betterprogramming.pub/better-than-cubic-complexity-for-matrix-multiplication-in-rust-cf8dfb6299f6)
     - [medium.com: Toward An Optimal Matrix Multiplication Algorithm. Autor Kilichbek Haydarov](https://medium.com/@kilichbekhaydarov/toward-an-optimal-matrix-multiplication-algorithm-4f024baa1206)
-- [Geeksforgeeks: Matrix Multiplication](https://www.geeksforgeeks.org/matrix-multiplication/) 
+    - [Geeksforgeeks: Matrix Multiplication](https://www.geeksforgeeks.org/matrix-multiplication/) 
 - Algoritmo Strassen. 
+
 Referencias consultadas:
     - [Geeksforgeeks: Strassen’s Matrix Multiplication Algorithm | Implementation](https://www.geeksforgeeks.org/strassens-matrix-multiplication-algorithm-implementation/)
     - [tutorialspiont: Strassen’s Matrix Multiplication](https://www.tutorialspoint.com/data_structures_algorithms/strassens_matrix_multiplication_algorithm.htm )
