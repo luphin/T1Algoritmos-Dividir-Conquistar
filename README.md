@@ -74,7 +74,7 @@ Para este conjunto de algoritmos se utilizaron implementaciones existentes de [w
 - Bubble sort. [Geeksforgeeks: Bubble Sort](https://www.geeksforgeeks.org/bubble-sort-in-cpp/) 
 - Mergesort. [Geeksforgeeks: Merge Sort](https://www.geeksforgeeks.org/merge-sort/?ref=header_outind) 
 - Quicksort. [Geeksforgeeks: Quick Sort](https://www.geeksforgeeks.org/quick-sort-algorithm/?ref=header_outind)
-- Funcion sorting de biblioteca estandar de C++. [Geeksforgeeks: std::sort](https://www.geeksforgeeks.org/sort-c-stl/) y [cppreference](https://en.cppreference.com/w/cpp/algorithm/sort)
+- Funcion sorting de biblioteca estandar de C++. [Geeksforgeeks: std::sort](https://www.geeksforgeeks.org/sort-c-stl/) y [cppreference sort algorithm](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 
 ### Algoritmos Multiplicacion de Matrices
