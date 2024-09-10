@@ -85,15 +85,16 @@ Para los algoritmos de multiplicación de matrices, se utilizaron diferentes fue
 
 Referencias utilizadas:
     - [betterprogramming: Better-than-Cubic Complexity for Matrix Multiplication in Rust. Autor Mike Cvet](https://betterprogramming.pub/better-than-cubic-complexity-for-matrix-multiplication-in-rust-cf8dfb6299f6)
-    - [medium.com: Toward An Optimal Matrix Multiplication Algorithm. Autor Kilichbek Haydarov](https://medium.com/@kilichbekhaydarov/toward-an-optimal-matrix-multiplication-algorithm-4f024baa1206)
+    - [europeanvalley: Multiplicación de Matrices: La importancia de un algoritmo. Autor Jorge Calvo](https://europeanvalley.es/noticias/multiplicacion-de-matrices-la-importancia-de-un-algoritmo/)
     - [Geeksforgeeks: Matrix Multiplication](https://www.geeksforgeeks.org/matrix-multiplication/) 
+    - [wikibrief: Algoritmo de multiplicación de matrices](https://es.wikibrief.org/wiki/Matrix_multiplication_algorithm)
 - Algoritmo Strassen. 
 
 Referencias consultadas:
     - [Geeksforgeeks: Strassen’s Matrix Multiplication Algorithm | Implementation](https://www.geeksforgeeks.org/strassens-matrix-multiplication-algorithm-implementation/)
     - [tutorialspiont: Strassen’s Matrix Multiplication](https://www.tutorialspoint.com/data_structures_algorithms/strassens_matrix_multiplication_algorithm.htm )
     - [Geeksforgeeks: Divide and Conquer | Set 5 (Strassen’s Matrix Multiplication)](https://www.geeksforgeeks.org/strassens-matrix-multiplication/?ref=header_outind)
-
+    - [europeanvalley: Multiplicación de Matrices: La importancia de un algoritmo. Autor Jorge Calvo](https://europeanvalley.es/noticias/multiplicacion-de-matrices-la-importancia-de-un-algoritmo/)
 
 ## Autor 
 Luis Zegarra
