@@ -29,13 +29,12 @@ Este comando ejecutará las pruebas en función de los algoritmos presentes en c
 ## Estructura archivos 
 
 ```
+.
 ├── Benchmarks_MatrixMultiplication
 │   ├── datasetMatrix.txt
-│   ├── generar_matrices
 │   ├── generateDTS.cpp
 │   ├── main.cpp
 │   ├── makefile
-│   ├── multiplicacion
 │   ├── resultados
 │   │   ├── iterativoCubicoOptimizado.csv
 │   │   ├── iterativoCubicoTradicional.csv
@@ -46,11 +45,9 @@ Este comando ejecutará las pruebas en función de los algoritmos presentes en c
 │       └── strassenMultiplicacion.txt
 ├── Benchmarks_sort
 │   ├── dataset.txt
-│   ├── generateDTS
 │   ├── generateDTS.cpp
 │   ├── main.cpp
 │   ├── makefile
-│   ├── ordenamiento
 │   ├── resultados
 │   │   ├── bubbleSort.csv
 │   │   ├── mergeSort.csv
@@ -64,7 +61,7 @@ Este comando ejecutará las pruebas en función de los algoritmos presentes en c
 │       ├── selectionSort.txt
 │       └── std::sort.txt
 ├── README.md
-
+└── tiempos_ejecucion.xlsx
 ```
 
 ### Algoritmos Ordenamiento
